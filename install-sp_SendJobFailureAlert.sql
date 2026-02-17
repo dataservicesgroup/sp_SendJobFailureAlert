@@ -11,7 +11,6 @@
 :on error exit
 :setvar SqlCmdEnabled "True"
 :setvar TargetDB ""
-:setvar 
 
 DECLARE @msg nvarchar(2048);
 SET @msg = N'sp_SendJobFailureAlert installer, by Data Services Group.';
