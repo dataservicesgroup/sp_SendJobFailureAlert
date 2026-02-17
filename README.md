@@ -59,6 +59,7 @@ This procedure allows you to:
 
 1. Create your SQL Agent job.
 2. Configure all job steps to go to a final step on failure.
+![screenshot spSendJobFailure](screenshot_spSendJobFailure.png)
 3. Add a final step that executes:
 
 ```sql
@@ -72,4 +73,3 @@ EXEC dbo.sp_SendJobFailureAlert
     @IncludeHistory = 1
     ;
 
-![screenshot spSendJobFailure](screenshot_spSendJobFailure.png)
