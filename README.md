@@ -36,7 +36,7 @@ This procedure allows you to:
 ## Installation
 
 1. Download `sp_SendJobFailureAlert.sql`
-2. Deploy to a user database (not a system database)
+2. Deploy to a user database (choose a system database if you want - it's up to you)
 3. Grant execute permissions as required
 
 ---
