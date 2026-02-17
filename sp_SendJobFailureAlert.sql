@@ -10,29 +10,17 @@
     within a defined time window.
 
 */
-
 CREATE PROCEDURE [dbo].[sp_SendJobFailureAlert]
-
 (
-
     @JobName NVARCHAR(128),
-
     @ToEmail NVARCHAR(256),
-
     @FailureThreshold INT = 3,
-
     @CheckIntervalHours INT = 24,
-
     @ProfileName NVARCHAR(128) = NULL,
-
     @Subject NVARCHAR(200) = NULL,
-
     @IncludeHistory BIT = 1
-
 )
-
 AS
-
 BEGIN
 
     SET NOCOUNT ON;

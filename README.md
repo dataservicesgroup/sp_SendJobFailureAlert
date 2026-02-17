@@ -64,6 +64,12 @@ This procedure allows you to:
 ```sql
 EXEC dbo.sp_SendJobFailureAlert
     @JobName = 'Your Job Name',
-    @ToEmail = 'dba@company.com';
+    @ToEmail = 'dba@company.com',
+    @FailureThreshold = 3,
+    @CheckIntervalHours INT = 24,
+    @ProfileName = 'SQL Database Mail Profile',
+    @Subject = 'Email Subject Goes Here',
+    @IncludeHistory = 1
+    ;
 
 ![screenshot spSendJobFailure](screenshot_spSendJobFailure.png)
