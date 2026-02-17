@@ -59,7 +59,7 @@ BEGIN
     DECLARE @Cutoff DATETIME2 = DATEADD(hour, -@CheckIntervalHours, SYSUTCDATETIME());
     DECLARE @FailCount INT;
 
-    SELECT @FailCount = COUNT(*)
+    SELECT @FailCount = COUNT_BIG(1)
     FROM msdb.dbo.sysjobhistory h
     WHERE h.job_id = @job_id
       AND h.step_id = 0        -- job outcome
