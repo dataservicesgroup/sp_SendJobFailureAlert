@@ -10,6 +10,8 @@
 */
 :on error exit
 :setvar SqlCmdEnabled "True"
+:setvar TargetDB ""
+
 DECLARE @msg nvarchar(2048);
 SET @msg = N'sp_SendJobFailureAlert installer, by Data Services Group.';
 RAISERROR (@msg, 10, 1) WITH NOWAIT;
@@ -54,7 +56,7 @@ GO
 USE [$(TargetDB)];
 GO
 
-:r .\sp_SendJobFailureAlert.sql
+:r sp_SendJobFailureAlert.sql
 GO
 
 DECLARE @msg nvarchar(2048);
