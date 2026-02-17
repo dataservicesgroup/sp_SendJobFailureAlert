@@ -10,7 +10,7 @@
     within a defined time window.
 
 */
-CREATE PROCEDURE [dbo].[sp_SendJobFailureAlert]
+CREATE OR ALTER PROCEDURE [dbo].[sp_SendJobFailureAlert]
 (
     @JobName NVARCHAR(128),
     @ToEmail NVARCHAR(256),
