@@ -66,4 +66,4 @@ EXEC dbo.sp_SendJobFailureAlert
     @JobName = 'Your Job Name',
     @ToEmail = 'dba@company.com';
 
-![Screenshot description](screenshot_spSendJobFailure.png)
+![Screenshot description](images/screenshot_spSendJobFailure.png)
