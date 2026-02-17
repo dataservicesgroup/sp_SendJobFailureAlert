@@ -1,3 +1,16 @@
+/*
+    sp_SendJobFailureAlert
+    Author: Nick Pennisi (Data Services Group)
+    License: MIT
+    Version: 1.0
+    Requires: SQL Server 2017+
+
+    Description:
+    Sends an alert when a SQL Agent job fails more than X times
+    within a defined time window.
+
+*/
+
 CREATE PROCEDURE [dbo].[sp_SendJobFailureAlert]
 
 (
