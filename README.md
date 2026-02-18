@@ -70,6 +70,5 @@ EXEC dbo.sp_SendJobFailureAlert
     @CheckIntervalHours INT = 24,
     @ProfileName = 'SQL Database Mail Profile',
     @Subject = 'Email Subject Goes Here',
-    @IncludeHistory = 1
-    ;
+    @IncludeHistory = 1;
 
