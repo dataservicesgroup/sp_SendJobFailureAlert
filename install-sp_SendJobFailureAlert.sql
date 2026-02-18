@@ -1,9 +1,11 @@
 /*
  sqlcmd-mode installer for Data Services Group sp_SendJobFailureAlert proc.
  
- run from sqlcmd.exe using the following command-line:
+ To run from sqlcmd.exe using the following command-line. Kindly note that you will need to comment out the :setvar lines for TargetDB and SqlLogin before executing from the command line. 
+
+ Alternatively, open the install-sp_SendJobFailureAlert.sql script in SSMS, select sqlcmd from the Tools menu, add your values for the TargetDB and SqlLogin parameters and execute
  
- sqlcmd -S {sql-server} -i .\install-human-events.sql -v TargetDB = "{TargetDB}" SqlLogin = "{SqlLogin}" -C
+ sqlcmd -S {sql-server} -E -i .\install-sp_SendJobFailureAlert.sql -v TargetDB="{TargetDB}" SqlLogin="{SqlLogin}" -C
  
  {sql-server} is the name of the target SQL Server
  {TargetDB} is where we'll install the sp_SendJobFailureAlert procedures.
@@ -33,11 +35,11 @@ BEGIN
 END;
 IF N'$(TargetDB)' = N'' OR N'$(SqlLogin)' = N''
 BEGIN
-    SET @msg = N'You must specify the target database and the sql login via the sqlcmd -V parameters (TargetDB = "{TargetDB}", SqlLogin = "{SqlLogin}")';
+    SET @msg = N'You must specify the target database and the sql login via the sqlcmd -v parameters (TargetDB="{TargetDB}" SqlLogin="{SqlLogin}")';
 
     RAISERROR(@msg, 15, 1) WITH NOWAIT;
 
-    SET @msg = N'sqlcmd.exe -S <servername> -E -i .\install-sp_SendJobFailureAlert.sql -v TargetDB = "<database_name>" SqlLogin = "<sql_login>" -C';
+    SET @msg = N'sqlcmd.exe -S <servername> -E -i .\install-sp_SendJobFailureAlert.sql -v TargetDB="<database_name>" SqlLogin="<sql_login>" -C';
 
     RAISERROR(@msg, 15, 1) WITH NOWAIT;
 
