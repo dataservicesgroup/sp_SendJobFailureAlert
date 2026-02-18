@@ -26,9 +26,11 @@ This procedure allows you to:
 - SQL Server 2017 or newer (uses STRING_AGG)
 - Database Mail configured and enabled
 - Permission to
-  - read msdb.dbo.sysjobs
-  - read msdb.dbo.sysjobhistory
+  - select msdb.dbo.sysjobs
+  - select msdb.dbo.sysjobhistory
+  - execute msdb.dbo.agent_datetime
   - execute msdb.dbo.sp_send_dbmail
+  - execute dbo.sp_SendJobFailureAlert
 
 ---
 
