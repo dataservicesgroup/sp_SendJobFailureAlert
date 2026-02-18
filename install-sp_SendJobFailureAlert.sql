@@ -2,11 +2,10 @@
  sqlcmd-mode installer for Data Services Group sp_SendJobFailureAlert proc.
  
  To run from sqlcmd.exe using the following command-line. Kindly note that you will need to comment out the :setvar lines for TargetDB and SqlLogin before executing from the command line. 
+ sqlcmd -S {sql-server} -E -i .\install-sp_SendJobFailureAlert.sql -v TargetDB="{TargetDB}" SqlLogin="{SqlLogin}" -C
 
  Alternatively, open the install-sp_SendJobFailureAlert.sql script in SSMS, select sqlcmd from the Tools menu, add your values for the TargetDB and SqlLogin parameters and execute
- 
- sqlcmd -S {sql-server} -E -i .\install-sp_SendJobFailureAlert.sql -v TargetDB="{TargetDB}" SqlLogin="{SqlLogin}" -C
- 
+  
  {sql-server} is the name of the target SQL Server
  {TargetDB} is where we'll install the sp_SendJobFailureAlert procedures.
  {SqlLogin} is the login which will be granted permissions to execute the sp_SendJobFailureAlert procedure.  This login must exist in both the target database and msdb. The script will apply the appropriate permissions.
