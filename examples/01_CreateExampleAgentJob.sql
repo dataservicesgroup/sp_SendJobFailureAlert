@@ -19,7 +19,14 @@ EXEC sp_add_jobstep
     @subsystem = N'TSQL',
     @command = N'
         EXEC dbo.sp_SendJobFailureAlert
-            @JobName = ''Example Failing Job'',
-            @ToEmail = ''dba@company.com'';
+            @JobName = 'Your Job Name',
+            @ToEmail = 'dba@company.com',
+            @FailureThreshold = 3,
+            @CheckIntervalHours INT = 24,
+            @ProfileName = 'SQL Database Mail Profile',
+            @Subject = 'Email Subject Goes Here',
+            @IncludeHistory = 1;
     ';
 GO
+
+
