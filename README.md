@@ -25,11 +25,10 @@ This procedure allows you to:
 
 - SQL Server 2017 or newer (uses STRING_AGG)
 - Database Mail configured and enabled
-- Permission to read:
-  - msdb.dbo.sysjobs
-  - msdb.dbo.sysjobhistory
-- Permission to execute:
-  - msdb.dbo.sp_send_dbmail
+- Permission to
+  - read msdb.dbo.sysjobs
+  - read msdb.dbo.sysjobhistory
+  - execute msdb.dbo.sp_send_dbmail
 
 ---
 
