@@ -38,7 +38,7 @@ This procedure allows you to:
 
 1. Download `sp_SendJobFailureAlert.sql`
 2. Deploy to a user database (choose a system database if you want - it's up to you)
-3. Grant execute permissions as required
+3. The script will handle permissions provided the login exists and has public access to msdb and the database you deploy to
 
 ---
 
