@@ -1,23 +1,23 @@
 /*
- sqlcmd-mode installer for Data Services Group sp_SendJobFailureAlert proc.
+ sqlcmd-mode installer for Data Services Group usp_SendJobFailureAlert proc.
  
  To run from sqlcmd.exe using the following command-line. Kindly note that you will need to comment out the :setvar lines for TargetDB and SqlLogin before executing from the command line. 
- sqlcmd -S {sql-server} -E -i .\install-sp_SendJobFailureAlert.sql -v TargetDB="{TargetDB}" SqlLogin="{SqlLogin}" -C
+ sqlcmd -S {sql-server} -E -i .\install-usp_SendJobFailureAlert.sql -v TargetDB="{TargetDB}" SqlLogin="{SqlLogin}" -C
 
- Alternatively, open the install-sp_SendJobFailureAlert.sql script in SSMS, select sqlcmd from the Tools menu, add your values for the TargetDB and SqlLogin parameters and execute
+ Alternatively, open the install-usp_SendJobFailureAlert.sql script in SSMS, select sqlcmd from the Tools menu, add your values for the TargetDB and SqlLogin parameters and execute
   
  {sql-server} is the name of the target SQL Server
- {TargetDB} is where we'll install the sp_SendJobFailureAlert procedures.
- {SqlLogin} is the login which will be granted permissions to execute the sp_SendJobFailureAlert procedure.  This login must exist in both the target database and msdb. The script will apply the appropriate permissions.
+ {TargetDB} is where we'll install the usp_SendJobFailureAlert procedures.
+ {SqlLogin} is the login which will be granted permissions to execute the usp_SendJobFailureAlert procedure.  This login must exist in both the target database and msdb. The script will apply the appropriate permissions.
  */
 :on error exit 
 :setvar SqlCmdEnabled "True" 
-:setvar TargetDB "" 
-:setvar SqlLogin "" 
+:setvar TargetDB "Common" 
+:setvar SqlLogin "nickp" 
 
 DECLARE @msg NVARCHAR(2048);
 
-SET @msg = N'sp_SendJobFailureAlert installer, by Data Services Group.';
+SET @msg = N'usp_SendJobFailureAlert installer, by Data Services Group.';
 
 RAISERROR(@msg, 10, 1) WITH NOWAIT;
 
@@ -38,7 +38,7 @@ BEGIN
 
     RAISERROR(@msg, 15, 1) WITH NOWAIT;
 
-    SET @msg = N'sqlcmd.exe -S <servername> -E -i .\install-sp_SendJobFailureAlert.sql -v TargetDB="<database_name>" SqlLogin="<sql_login>" -C';
+    SET @msg = N'sqlcmd.exe -S <servername> -E -i .\install-usp_SendJobFailureAlert.sql -v TargetDB="<database_name>" SqlLogin="<sql_login>" -C';
 
     RAISERROR(@msg, 15, 1) WITH NOWAIT;
 
@@ -67,7 +67,7 @@ BEGIN
 END;
 ELSE
 BEGIN
-    SET @msg = N'sp_SendJobFailureAlert will be installed into the [$(TargetDB)] database.';
+    SET @msg = N'usp_SendJobFailureAlert will be installed into the [$(TargetDB)] database.';
 
     RAISERROR(@msg, 10, 1) WITH NOWAIT;
 
@@ -76,20 +76,20 @@ GO
 USE [$(TargetDB)];
 
 GO
-    :r sp_SendJobFailureAlert.sql
+    :r usp_SendJobFailureAlert.sql
 GO
 DECLARE @msg NVARCHAR(2048);
 
-IF OBJECT_ID(N'dbo.sp_SendJobFailureAlert') IS NOT NULL
+IF OBJECT_ID(N'dbo.usp_SendJobFailureAlert') IS NOT NULL
 BEGIN
     SET @msg
-        = N'dbo.sp_SendJobFailureAlert has been successfully installed into the [$(TargetDB)] database on '
+        = N'dbo.usp_SendJobFailureAlert has been successfully installed into the [$(TargetDB)] database on '
           + @@SERVERNAME + N'.';
 
     RAISERROR(@msg, 10, 1) WITH NOWAIT;
 
 END;
-SET @msg = N'install-sp_SendJobFailureAlert.sql completed.';
+SET @msg = N'install-usp_SendJobFailureAlert.sql completed.';
 
 RAISERROR(@msg, 10, 1) WITH NOWAIT;
 
@@ -98,7 +98,7 @@ IF EXISTS
 (
     SELECT 1
     FROM sys.objects
-    WHERE name = 'sp_SendJobFailureAlert'
+    WHERE name = 'usp_SendJobFailureAlert'
           AND type = 'P'
 )
 BEGIN
@@ -110,7 +110,7 @@ BEGIN
         WHERE name = N'$(SqlLogin)'
     )
     BEGIN
-        SET @sql = N'GRANT EXECUTE ON dbo.sp_SendJobFailureAlert TO [$(SqlLogin)]';
+        SET @sql = N'GRANT EXECUTE ON dbo.usp_SendJobFailureAlert TO [$(SqlLogin)]';
 
         EXEC sp_executesql @sql;
 

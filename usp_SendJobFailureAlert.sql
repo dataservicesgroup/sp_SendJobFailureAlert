@@ -1,5 +1,5 @@
 /*
-    sp_SendJobFailureAlert
+    usp_SendJobFailureAlert
     Author: Nick Pennisi (Data Services Group)
     License: MIT
     Version: 1.0
@@ -10,7 +10,7 @@
     within a defined time window.
 
 */
-CREATE OR ALTER PROCEDURE [dbo].[sp_SendJobFailureAlert]
+CREATE OR ALTER PROCEDURE [dbo].[usp_SendJobFailureAlert]
 (
     @JobName NVARCHAR(128),
     @ToEmail NVARCHAR(256),
